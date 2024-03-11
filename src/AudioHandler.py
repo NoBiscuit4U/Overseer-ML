@@ -1,7 +1,6 @@
 import sounddevice as sd
 from Constants import AudioHandlerConstants as cons
 import wavio as wv
-from pocketsphinx import Decoder
 import os
 import glob
 import argparse
@@ -27,6 +26,3 @@ def audiofileToString(directorypath):
 
     #print(returntext)
     #return returntext
-
-#recordwriteAudio(0,cons.audioFP)
-#audiofileToString(cons.audioFP)
