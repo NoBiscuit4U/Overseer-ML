@@ -1,5 +1,4 @@
-import Tokenizer
-import csv,os
+import csv
 
 class CSVData:
     def __new__(cls,*args,**kargs):
@@ -13,9 +12,15 @@ class CSVData:
             rows=reader.copy()
 
         self.rows=rows
-
-    def getColumns(self):
-        return self.rows[0]
+        self.columns=rows[0]
+        self.rowCount=len(rows)
+        self.columnCount=len(rows[0])
+        #print(self.columns)
+        #for row in self.rows:
+            #if row!=self.rows[0]:
+               #print(row)
+        #print(self.rowCount)
+        #print(self.columnCount)
     
     def findUnique(self,targetColumn):
         outputTokens=[]
@@ -34,6 +39,7 @@ class CSVData:
                         if tokens[i] not in outputTokens:
                             outputTokens.append(token)
 
+        #print(outputTokens)
         return outputTokens
 
 
@@ -61,11 +67,10 @@ class CSVData:
                 if i==max(range(len(uniqueTokens))):
                     outputMatrix.append(newMatrixRow)
 
-        print(uniqueTokens)
-        for row in outputMatrix:
-            print(row)
+        #print(uniqueTokens)
+        #for row in outputMatrix:
+        #    print(row)
         return outputMatrix
-    
-newCsv=CSVData("c:/VS/SpeechMimicry/src/info/worddatabase.csv")
-newCsv.oneHotEncode(newCsv.findUnique(0),0)
+
+data=CSVData("c:/VS/SpeechMimicry/src/worddatabase.csv")
     
