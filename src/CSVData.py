@@ -22,6 +22,15 @@ class CSVData:
         #print(self.rowCount)
         #print(self.columnCount)
     
+    def ColumnValues(self,column):
+        output=[]
+
+        for row in self.rows:
+                if(row!=self.rows[0]):
+                    output.append(float(row[column])) 
+        
+        return output
+    
     def findUnique(self,targetColumn):
         outputTokens=[]
         tokens=[]
@@ -71,6 +80,4 @@ class CSVData:
         #for row in outputMatrix:
         #    print(row)
         return outputMatrix
-
-data=CSVData("c:/VS/SpeechMimicry/src/worddatabase.csv")
     
