@@ -22,12 +22,17 @@ class CSVData:
         #print(self.rowCount)
         #print(self.columnCount)
     
-    def ColumnValues(self,column):
+    def ColumnValues(self,columnName=""):
         output=[]
+        i=0
 
-        for row in self.rows:
-                if(row!=self.rows[0]):
-                    output.append(float(row[column])) 
+        for column in self.columns:
+            if(columnName==column):
+                for row in self.rows:
+                    if(row!=self.rows[0]):
+                        output.append(float(row[i])) 
+            else:
+                i+=1
         
         return output
     

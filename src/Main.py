@@ -3,8 +3,9 @@ import Constants
 from LinearRegression import LinearRegression as lr
 
 data=csv.CSVData(Constants.CSVConstants.csvStockPricesFP)
-xColumn=data.ColumnValues(0)
-yColumn=data.ColumnValues(1)
-newLR=lr.LinearRegression(50,xColumn,yColumn,366)
+xColumn=data.ColumnValues("Temperature")
+yColumn=data.ColumnValues("Ice Cream Profits")
+newLR=lr.LinearRegression(500,xColumn,yColumn,366)
 
 newLR.train()
+newLR.plot("Temperature Vs. Ice Cream Profits","Temperature","Ice Cream Profits")

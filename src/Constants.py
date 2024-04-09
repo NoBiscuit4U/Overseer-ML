@@ -1,3 +1,3 @@
 class CSVConstants:
-    csvStockPricesFP="c:/VS/OverSeer/src/csvs/Ice Cream Sales - temperatures.csv"
+    csvStockPricesFP="c:/VS/Overseer/src/csvs/Ice Cream Sales - temperatures.csv"
 
