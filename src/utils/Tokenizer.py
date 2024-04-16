@@ -1,3 +1,4 @@
+#Checks if the character is a string
 def CheckIfIsSymbol(character=""):
     listOfSymbols=[".",",","?","#","!","@","$","%","<",
                    ">",":",";","'",'"',"{","}","[","]",
@@ -11,6 +12,8 @@ def CheckIfIsSymbol(character=""):
             if(s==max(listLen)):
                 return False         
 
+#Groups together characters seperated by a space
+#Works the same as the string function split
 def SpaceTokenizer(string=""):
     strLen=range(len(string))
     outputList=[]
@@ -28,6 +31,7 @@ def SpaceTokenizer(string=""):
 
     return outputList
 
+#Groups togther characters seperated by punctuation
 def PunctuationTokenizer(string=""):
     strLen=range(len(string))
     outputList=[]

@@ -1,3 +1,4 @@
+#This class is a Constants class which stores all the directorys for the csvs
 class CSVConstants:
-    csvStockPricesFP="c:/VS/Overseer/src/csvs/Ice Cream Sales - temperatures.csv"
+    csvIceCreamPricesFP="c:/VS/Overseer/src/csvs/Ice Cream Sales - temperatures.csv"
 

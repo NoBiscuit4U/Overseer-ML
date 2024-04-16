@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-class LinearRegressionMath:
+class _LinearRegressionMath:
         #Sum Squared Error Function
     def SSE(y,pred):
         return 0.5*np.sum((y-pred)**2)
@@ -10,7 +10,8 @@ class LinearRegressionMath:
     def GetWeightDerivative(y,pred,x):
         return np.sum(-(y-pred)*x)
 
-        #Returns the Output Of the Node
+        #Returns the Last Output
+        #Using Weight1, Weight0, Bias, and the Input
     def GetLastOutput(w0,x0,w1,x1):
         return w0*x0+w1*x1
 
@@ -20,7 +21,7 @@ class LinearRegressionMath:
         return (summation/len(data))**0.5
     
         #Returns a normalized set of data
-        #A set of data within a range of 0-1 that contains the same variation
+        #Set of data within a range of 0-1 that contains the same variation
     def Normalize(data):
         min=np.amin(data)
         range=np.amax(data)-min
@@ -29,7 +30,7 @@ class LinearRegressionMath:
 
 class LinearRegression:
     def __init__(self,epochs,xValues,yValues,size,learnRate=0.001,bias=1):
-        lrMath=LinearRegressionMath
+        lrMath=_LinearRegressionMath
         #Bias
         self.x0=bias
         #Weights (Randomly Assign Starting Weights)
@@ -49,21 +50,21 @@ class LinearRegression:
         self.epochs=epochs
 
     def train(self):
-        lrMath=LinearRegressionMath
+        lrMath=_LinearRegressionMath
         
         for epoch in range(self.epochs):
                 pred=lrMath.GetLastOutput(self.w0,self.x0,self.w1,self.x1)
                 error=lrMath.SSE(self.y,pred)
                 derivw0=lrMath.GetWeightDerivative(self.y,pred,self.x0)
                 derivw1=lrMath.GetWeightDerivative(self.y,pred,self.x1)
-                print(f"Deriv0: {derivw0} Deriv1: {derivw1}")
                 self.w0=self.w0-self.learnRate*derivw0
                 self.w1=self.w1-self.learnRate*derivw1
+                print(f"Deriv0: {derivw0} Deriv1: {derivw1}")
                 print(f"w0: {self.w0} w1: {self.w1}")
                 print(f"Current Epoch: {epoch} Error: {error}")
         
     def plot(self,title,xlabel,ylabel):
-        lrMath=LinearRegressionMath
+        lrMath=_LinearRegressionMath
 
         lrPred=lrMath.GetLastOutput(self.w0,self.x0,self.w1,self.x1)
         plt.scatter(self.x1,self.y)

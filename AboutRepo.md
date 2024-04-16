@@ -6,4 +6,4 @@ Here are a few things about this repo.
 -I will also minimize the usage of other libraries mainly only using numpy.
 
 Since I will be working with csvs for training and test datasets, any csvs used will
-have an associate link in a text file pertaining to the location to which I found it
+have an associate link in a text file pertaining to the location to which I found it.
