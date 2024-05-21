@@ -1,5 +1,13 @@
-#Checks if the character is a string
 def CheckIfIsSymbol(character=""):
+    """
+    Checks if the inputted character is equal to a symbol.
+
+    Params
+    -------------------------------------------------------------------------------
+    character: The character you want to compare to a list of symbols.
+
+    -------------------------------------------------------------------------------
+    """
     listOfSymbols=[".",",","?","#","!","@","$","%","<",
                    ">",":",";","'",'"',"{","}","[","]",
                    "=","-","_","+","*","(",")","&","^"]
@@ -11,10 +19,17 @@ def CheckIfIsSymbol(character=""):
         else:
             if(s==max(listLen)):
                 return False         
-
-#Groups together characters seperated by a space
-#Works the same as the string function split
+            
 def SpaceTokenizer(string=""):
+    """
+    Returns a new list of substrings by grouping together characters seperated by a space.
+
+    Params
+    -------------------------------------------------------------------------------
+    string: The string which you want to pull substrings from.
+
+    -------------------------------------------------------------------------------
+    """
     strLen=range(len(string))
     outputList=[]
     lastpos=0
@@ -31,8 +46,16 @@ def SpaceTokenizer(string=""):
 
     return outputList
 
-#Groups togther characters seperated by punctuation
 def PunctuationTokenizer(string=""):
+    """
+    Returns a new list of substrings by grouping together characters seperated by a space or forms of punctuation.
+
+    Params
+    -------------------------------------------------------------------------------
+    string: The string which you want to pull substrings from.
+
+    -------------------------------------------------------------------------------
+    """
     strLen=range(len(string))
     outputList=[]
     newList=[]

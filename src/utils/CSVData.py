@@ -1,7 +1,9 @@
 import csv
 
-#Class for important universal functions for the main CsvData class
 class _CSVFunctions:
+    """
+    Private class for basic functions used by the functions in CSVData
+    """
     def __init__(self,columns,rows):
         self.columns=columns
         self.rows=rows
@@ -19,9 +21,23 @@ class _CSVFunctions:
                 i+=1
         
         return output
-
-#The main class for processing information from a csv
+    
 class CSVData:
+    """
+    Class for manipulating and pulling information from csv files.
+
+    Functions
+    -------------------------------------------------------------------------------
+    getColumnValues(), deleteColumns(), deleteRows(), findUnique(), oneHotEncode()
+
+    -------------------------------------------------------------------------------
+
+    Params
+    -------------------------------------------------------------------------------
+    csvFile: Requires the directory of a csvFile to be passed in.
+
+    -------------------------------------------------------------------------------
+    """
     def __init__(self,csvFile):
         with open(csvFile) as f:
             reader=list(csv.reader(f))
@@ -41,11 +57,78 @@ class CSVData:
         #print(self.rowCount)
         #print(self.columnCount)
 
-    def getColumnValues(self,targetColumn):
+    def getColumnValues(self,targetColumn=""):
+        """
+        Returns the columns values.
+
+        Params
+        -------------------------------------------------------------------------------
+        targetColumn: Requires the name of the column with the desired values to be passed in.
+
+        -------------------------------------------------------------------------------
+        """
         return self.csvFuncs.columnValues(targetColumn)
     
-    #Function to find unique values in a column
+    def deleteColumns(self,targetColumns=[""]):
+        """
+        Returns a new set of data with only the desired columns.
+
+        Params
+        -------------------------------------------------------------------------------
+        targetColumns: List of columns to remove, uses the name of column.
+
+        -------------------------------------------------------------------------------
+        """
+        outputList=[]
+        targetColumnIndexs=[]
+        newRow=[]
+        i=0
+
+        for column in self.columns:
+            for targetColumn in targetColumns:
+                if(targetColumn==column):
+                    targetColumnIndexs.append(i)
+                    i=0
+                else:
+                    i+=1
+     
+        for row in self.rows:
+            for element in range(self.rowCount):
+                if(any(element==e for e in targetColumnIndexs)==False):
+                    newRow.append(row[element])
+                    outputList.append(newRow)
+    
+        return outputList
+    
+    def deleteRows(self,targetRows=[0]):
+        """
+        Returns a new set of data with only the desired rows.
+
+        Params
+        -------------------------------------------------------------------------------
+        targetRows: List of rows to remove, uses the index of the row.
+
+        -------------------------------------------------------------------------------
+        Also when removing rows a row index of 0 is always the column names.
+        """
+        outputList=[]
+
+        for row in range(self.rowCount):
+            if(any(row==r for r in targetRows)==False):
+                outputList.append(self.rows[row])
+
+        return outputList
+
     def findUnique(self,targetColumn=""):
+        """
+        Returns all the unique values in a column.
+
+        Params
+        -------------------------------------------------------------------------------
+        targetColumn: The column in which you want to grab the unique values from.
+
+        -------------------------------------------------------------------------------
+        """
         uniqueValues=[]
         values=[]
         i=0
@@ -64,9 +147,18 @@ class CSVData:
         #print(uniqueValues)
         return uniqueValues
 
-    #Function to OneHotEncode a specific column
-    #OneHotEncoding is an inefficent way to encode data for certain use cases
     def oneHotEncode(self,uniqueValues,targetColumn=""):
+        """
+        Using unique values from the same column this will return a new one-hot matrix.
+
+        Params
+        -------------------------------------------------------------------------------
+        uniqueValues: Unique values from the same column.
+
+        targetColumn: The column you want to one-hot encode.
+
+        -------------------------------------------------------------------------------
+        """
         outputMatrix=[]
         values=[]
         i=0

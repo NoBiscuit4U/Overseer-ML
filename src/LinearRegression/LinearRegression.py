@@ -21,11 +21,20 @@ class _LinearRegressionMath:
         return (summation/len(data))**0.5
     
         #Returns a normalized set of data
-        #Set of data within a range of 0-1 that contains the same variation
+        #Set of data within a range of 0-1 that contains the same variation as the previous values
     def Normalize(data):
         min=np.amin(data)
         range=np.amax(data)-min
         return np.array((data-min)/range)
+    
+        #Gets the variation of each value off the line of best fit
+    def GetPointVariation(y,pred):
+        variation=np.array(y-pred)
+        maxOutlier=np.amax(variation)
+        #print(variation)
+        #print(maxOutlier)
+        return variation
+
         
 
 class LinearRegression:
@@ -67,8 +76,10 @@ class LinearRegression:
         lrMath=_LinearRegressionMath
 
         lrPred=lrMath.GetLastOutput(self.w0,self.x0,self.w1,self.x1)
+        dif=lrMath.GetPointVariation(self.y,lrPred)
         plt.scatter(self.x1,self.y)
         plt.plot(self.x1,lrPred)
+        plt.plot(self.x1,dif)
         plt.title(title)
         plt.xlabel(xlabel)
         plt.ylabel(ylabel)
