@@ -30,14 +30,37 @@ class _LinearRegressionMath:
         #Gets the variation of each value off the line of best fit
     def GetPointVariation(y,pred):
         variation=np.array(y-pred)
-        maxOutlier=np.amax(variation)
-        #print(variation)
-        #print(maxOutlier)
         return variation
 
         
 
 class LinearRegression:
+    """
+        Instantiates a new linear regression model. Linear regression is used to find the line of best fit,
+        which is used to find and visualize a correlation between an independent and dependent variable.
+
+        Params
+        -------------------------------------------------------------------------------
+        - epochs: The number of iterations the model will run through.
+        
+        - xValues: The dependent variable used on the x-axis.
+
+        - yValues: The independent variable used on the y-axis.
+
+        - size: The desired number of values from the x and yValue arrays.
+
+        - learningRate: The rate at which the model tries to go to the desired error. (If the number is too low it will take a long time, if it is to high it will overshoot and oscillate)
+    
+        - bias: Can be used to change the desired slope of the line.
+        -------------------------------------------------------------------------------
+
+        Funcs
+        -------------------------------------------------------------------------------
+        - train: Runs the model for the desired epochs and prints the derivatives, the weights, and the current epoch to the terminal.
+
+        - plot: Plots the line of best fit and shows variation off the line
+        -------------------------------------------------------------------------------
+    """
     def __init__(self,epochs,xValues,yValues,size,learnRate=0.001,bias=1):
         lrMath=_LinearRegressionMath
         #Bias
