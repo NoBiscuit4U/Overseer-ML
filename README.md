@@ -14,16 +14,16 @@ Here are a few things about this repo.
 
 # Currently Working Models
 ## Linear Regression
-Linear Regression is a simple machine learning model used to find the best fit of a line.
+Linear Regression is a simple machine learning model used to find the line of best fit.
 
 This can then be used to visualize the correlation between an independent variable (y-axis), and a dependent variable (x-axis)[^1].
 [^1]: A correlation between any two variables does not mean they are the sole cause of each others increase or decrease.
 
 **Example**
 
-![LinearRegressionExample](Screenshot_2024-05-21_143924.png)[^2]
+![LinearRegressionExample](Screenshot 2024-05-27 212437.png)[^2]
 [^2]: The x and y values are 0-1 because they have been normalized. Normalization is when you use the min and max of a set of numbers to get
-a set of numbers between 0-1 that has the same variation as the previous values. 
+a set of numbers between 0-1 that have the same variation as the previous values. 
 Normalization Formula: xnorm = x - xmin / xmax - xmin
 
 
