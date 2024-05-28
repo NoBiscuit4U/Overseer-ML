@@ -20,6 +20,7 @@ This can then be used to visualize the correlation between an independent variab
 [^1]: A correlation between any two variables does not mean they are the sole cause of each others increase or decrease.
 
 **Example**
+
 ![Example](<Screenshot 2024-05-27 212437.png>)
 
 ![LinearRegressionExample](Screenshot 2024-05-27 212437.png)[^2]
