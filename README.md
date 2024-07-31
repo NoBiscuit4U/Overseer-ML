@@ -17,7 +17,7 @@ Here are a few things about this repo.
 Linear Regression is a simple machine learning model used to find the line of best fit.
 
 This can then be used to visualize the correlation between an independent variable (y-axis), and a dependent variable (x-axis)[^1].
-[^1]: A correlation between any two variables does not mean they are the sole cause of each others increase or decrease.
+[^1]: A correlation between any two variables does not mean they are the sole cause of each other's increase or decrease.
 
 **Example**
 
@@ -28,6 +28,9 @@ a set of numbers between 0-1 that have the same variation as the previous values
 Normalization Formula: xnorm = x - xmin / xmax - xmin
 
 
-This example shows the correlation of temperature and ice cream sales.
+This example shows the correlation between temperature and ice cream sales.
 
 The blue line is the line of best fit, and the orange line shows data point variation off the line of best fit.
+
+## K-Means
+K-means is a simple machine learning model that groups together points on a graph based on their distance to a centroid
