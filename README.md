@@ -21,7 +21,8 @@ This can then be used to visualize the correlation between an independent variab
 
 **Example**
 
-![Example](<Screenshot 2024-05-27 212437.png>)
+![Example](<Screenshot 2024-05-27 212437.png>)[^2]
+
 
 [^2]: The x and y values are 0-1 because they have been normalized. Normalization is when you use the min and max of a set of numbers to get
 a set of numbers between 0-1 that have the same variation as the previous values. 
