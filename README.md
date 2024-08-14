@@ -21,7 +21,7 @@ This can then be used to visualize the correlation between an independent variab
 
 **Example**
 
-![Example](<Screenshot 2024-05-27 212437.png>)
+![Example](<Screenshot 2024-05-27 212437.png>)[^2]
 
 [^2]: The x and y values are 0-1 because they have been normalized. Normalization is when you use the min and max of a set of numbers to get
 a set of numbers between 0-1 that have the same variation as the previous values. 
@@ -33,4 +33,12 @@ This example shows the correlation between temperature and ice cream sales.
 The blue line is the line of best fit, and the orange line shows data point variation off the line of best fit.
 
 ## K-Means
-K-means is a simple machine learning model that groups together points on a graph based on their distance to a centroid
+K-means is a simple machine learning model that groups points on a graph based on their distance to a centroid.
+
+K-means is used for basic data grouping and analyzing basic data structure.
+
+**Example**
+
+![Example](<Figure_1.png>)
+
+This example shows three distinct groups of points centralized around the convergence position of each centroid.
