@@ -4,123 +4,133 @@ import math
 
 class _KMeansClusteringMath:
     #Calculates the distance between two cartesian points
-    def EuclideanDistanceFormula(point1,point2):
-        return 0.5*((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+    def EuclideanDistanceFormula(n1,n2):
+        return 0.5*((n2[0]-n1[0])**2+(n2[1]-n1[1])**2)
+
+    #Returns a normalized set of data
+    #Set of data within a range of 0-1 that contains the same variation as the previous values
+    def Normalize(data):
+        min=np.amin(data)
+        range=np.amax(data)-min
+        return np.array((data-min)/range)
 
 class _KMeansClusteringFuncs:
-    def CreatePointArray(xValues,yValues,size):
+    def CreatePointArray(x,y,size):
         pointArray=[]
 
         for i in range(size):
-            pointArray.append([xValues[i],yValues[i]])
+            pointArray.append([x[i],y[i]])
 
         return pointArray
     
-    def InitCentroids(pointArray,k):
+    def InitCentroids(nArray,k):
         kMeansMath=_KMeansClusteringMath
-        centroids=[max(pointArray)]
-        distancesToAdd=[]
-        distances=[]
+        c=[max(nArray)]
+        disAdd=[]
+        dis=[]
 
-        if(k>=2 and max(range(len(centroids)))<=2):
-            for point in pointArray:
-                if(point!=any(centroids)):
-                    distances.append(kMeansMath.EuclideanDistanceFormula(centroids[0],point))
+        if(k>=2 and max(range(len(c)))<=2):
+            for n in nArray:
+                if(n!=any(c)):
+                    dis.append(kMeansMath.EuclideanDistanceFormula(c[0],n))
                 else:
-                    distances.append(0) 
+                    dis.append(0) 
             
-            desiredPoint=np.amax(distances)
+            c1=np.amax(dis)
 
-            for i in range(len(pointArray)):
-                if(distances[i]==desiredPoint):
-                    centroids.append(pointArray[i])
+            for i in range(len(nArray)):
+                if(dis[i]==c1):
+                    c.append(nArray[i])
             
-            distances=[]
+            dis=[]
         
         if(k>2):
             for i in range(k-2):
                 print(f"Scalable Generation: {i}")
-                sumOfDistances=[]
-                centroidDistanceArray=[]
-                isAtMax=False
-                secondPointIndex=1
-                index=0
+                disSumm=[]
+                cDis=[]
+                isFinal=False
+                i1=0
+                i2=1
 
-                while(not isAtMax):
-                    centroidDistanceArray.append(kMeansMath.EuclideanDistanceFormula(centroids[index],centroids[secondPointIndex]))
+                while(not isFinal):
+                    cDis.append(kMeansMath.EuclideanDistanceFormula(c[i],c[i2]))
 
-                    if(secondPointIndex+1<len(centroids)):
-                        secondPointIndex+=1
-                        index+=1
+                    if(i2+1<len(c)):
+                        i2+=1
+                        i1+=1
                     else:
-                        isAtMax=True
-                        #print(f"Centroid Distance to Eachother: {centroidDistanceArray}")
+                        isFinal=True
+                        #print(f"Centroid Distance to Eachother: {cDis}")
 
-                for point in pointArray:
-                    distanceArray=centroidDistanceArray[:]
+                for n in nArray:
+                    t_dis=cDis[:]
 
-                    if(point!=any(centroids)):
-                        distanceArray.append(kMeansMath.EuclideanDistanceFormula(centroids[secondPointIndex],point))
-                        distanceArray.append(kMeansMath.EuclideanDistanceFormula(point,centroids[0]))
+                    if(n!=any(c)):
+                        t_dis.append(kMeansMath.EuclideanDistanceFormula(c[i2],n))
+                        t_dis.append(kMeansMath.EuclideanDistanceFormula(n,c[0]))
                     else:
-                        distances.append(0) 
+                        dis.append(0) 
                         
-                    distances.append(distanceArray)
+                    dis.append(t_dis)
                 
-                for i in range(len(pointArray)):
-                    distancesToAdd.append(distances[i])
+                for i in range(len(nArray)):
+                    disAdd.append(dis[i])
 
-                    sumOfDistances.append(np.sum(distancesToAdd))
-                    distancesToAdd=[]
+                    disSumm.append(np.sum(disAdd))
+                    disAdd=[]
                 
-                desiredPoint=max(sumOfDistances)
-                print(f"Greatest Perimeter: {desiredPoint}")
+                desiredn=max(disSumm)
+                print(f"Greatest Perimeter: {desiredn}")
 
-                for i in range(len(sumOfDistances)):
-                        if(sumOfDistances[i]==desiredPoint):
-                            centroids.append(pointArray[i])
-                            print(f"New Centroid: {pointArray[i]}")
+                for i in range(len(disSumm)):
+                        if(disSumm[i]==desiredn):
+                            c.append(nArray[i])
+                            print(f"New Centroid: {nArray[i]}")
                 
-                distances=[]
-                sumOfDistances=[]
-            return centroids
+                dis=[]
+                disSumm=[]
+            return c
 
                     
-    def CreateClusterArrays(pointArray,centroids):
+    def CreateClusterArrays(nArray,centroids):
         kMeansMath=_KMeansClusteringMath
-        centroidGroups=[]
+        k=[]
 
-        for centroid in centroids:
-            centroidGroups.append([])
+        for c in centroids:
+            k.append([])
 
-        for point in pointArray:
-            minDistanceToCentroid=0
-            for centroid in centroids:
-                newDistanceToCentroid=kMeansMath.EuclideanDistanceFormula(centroid,point)
+        for n in nArray:
+            minDis=0
+            for c in centroids:
+                newDis=kMeansMath.EuclideanDistanceFormula(c,n)
                 
-                if(minDistanceToCentroid==0):
-                    minDistanceToCentroid=newDistanceToCentroid
+                if(minDis==0):
+                    minDis=newDis
                 else:
-                    if(newDistanceToCentroid<minDistanceToCentroid):
-                        minDistanceToCentroid=newDistanceToCentroid
+                    if(newDis<minDis):
+                        minDis=newDis
+  
+            for i in range(len(k)):
+                dis=kMeansMath.EuclideanDistanceFormula(centroids[i],n)
+                if(minDis==dis):
+                    k[i].append(n)
+   
+        return k
 
-            for i in range(len(centroidGroups)):
-                distance=kMeansMath.EuclideanDistanceFormula(centroids[i],point)
-                if(minDistanceToCentroid==distance):
-                    centroidGroups[i].append(point)
-        
-        return centroidGroups
-
-    def NewCentroid(pointArray=[[0,0]]):
+    def NewCentroid(nArray=[[0,0]]):
         ycoords=[]
         xcoords=[]
-        for point in pointArray:
-            xcoords.append(point[0])
-            ycoords.append(point[1])
+        for n in nArray:
+            xcoords.append(n[0])
+            ycoords.append(n[1])
 
         meanx=np.mean(xcoords)
         meany=np.mean(ycoords)
         return [meanx,meany]
+    
+    def SilhouetteScore(avinter,avintra):
+        return (avintra-avinter)/max(avinter,avintra)
 
 class KMeansClustering:
     def __init__(self,epochs,k,xValues,yValues,size=0):
@@ -130,8 +140,8 @@ class KMeansClustering:
         self.x=xValues
         self.y=yValues
         self.epochs=epochs
-        self.pointArray=kMeansFuncs.CreatePointArray(xValues,yValues,size)
-        self.centroids=kMeansFuncs.InitCentroids(self.pointArray,k)
+        self.nArray=kMeansFuncs.CreatePointArray(xValues,yValues,size)
+        self.centroids=kMeansFuncs.InitCentroids(self.nArray,k)
         self.clusterArrays=[]
         print(self.centroids)
     
