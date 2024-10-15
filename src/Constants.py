@@ -2,4 +2,5 @@
 class CSVConstants:
     csvIceCreamPricesFP="c:/VS/Overseer/src/csvs/Ice Cream Sales - temperatures.csv"
     csvxclaraFP="c:/VS/Overseer/src/csvs/xclara.csv"
+    csvcalHousing="c:/VS/Overseer/src/csvs/housing.csv"
 
