@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 import math
 
 class _KMeansClusteringMath:
@@ -112,7 +113,11 @@ class _KMeansClusteringFuncs:
                 else:
                     if(newDis<minDis):
                         minDis=newDis
-  
+                    elif(newDis==minDis):
+                        if(random.randint(1,2)==1):
+                            newDis=minDis
+                        
+                        
             for i in range(len(k)):
                 dis=kMeansMath.EuclideanDistanceFormula(centroids[i],n)
                 if(minDis==dis):
@@ -191,7 +196,7 @@ class KMeansClustering:
         plt.show()
 
     def plot(self,title,xlabel,ylabel):
-            colors=["red","blue","green","cyan","purple","black","white","brown","orange","yellow"]
+            colors=["red","blue","green","cyan","purple","orange","black","brown","yellow"]
 
             for i in range(len(self.clusterArrays)):
                 xVals=[]
