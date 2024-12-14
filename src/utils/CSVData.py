@@ -8,7 +8,7 @@ class _CSVFunctions:
         self.columns=columns
         self.rows=rows
 
-    def columnValues(self,targetColumn=""):
+    def columnValues(self,targetColumn="",isString=False):
         output=[]
         i=0
 
@@ -16,7 +16,11 @@ class _CSVFunctions:
             if(targetColumn==column):
                 for row in self.rows:
                     if(row!=self.rows[0]):
-                        output.append(float(row[i])) 
+                        if(row):
+                            if(not isString):
+                                output.append(float(row[i])) 
+                            else:
+                                output.append((row[i]))
             else:
                 i+=1
         
@@ -57,7 +61,7 @@ class CSVData:
         #print(self.rowCount)
         #print(self.columnCount)
 
-    def getColumnValues(self,targetColumn=""):
+    def getColumnValues(self,targetColumn="",isString=False):
         """
         Returns the columns values.
 
@@ -67,7 +71,7 @@ class CSVData:
 
         -------------------------------------------------------------------------------
         """
-        return self.csvFuncs.columnValues(targetColumn)
+        return self.csvFuncs.columnValues(targetColumn,isString)
     
     def deleteColumns(self,targetColumns=[""]):
         """
